@@ -24,6 +24,7 @@ public abstract class GraphSearcher<N, C extends Collection<? extends N>>
     public void afterAddNode(N node) throws Exception {}
     public void beforeRemoveNode() throws Exception {}
     public void afterRemoveNode(N node) throws Exception {}
+    public boolean canAddChildrenFor(N node) throws Exception { return true; }
     public void beforeIteration(int currentIteration) throws Exception {}
     public void afterIteration(int currentiteration) throws Exception {}
     
@@ -66,6 +67,7 @@ public abstract class GraphSearcher<N, C extends Collection<? extends N>>
     
     public void doIteration(int currentIteration) throws Exception {
         N node = this.removeNode();
+        if (!this.canAddChildrenFor(node)) { return; }
         Collection<? extends N> children = this.getChildrenOf(node);
         for (N child : children) {
             this.addNode(child);

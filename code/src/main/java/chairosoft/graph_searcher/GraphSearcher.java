@@ -37,7 +37,7 @@ public abstract class GraphSearcher<N, C extends Collection<? extends N>>
     
     public N removeNode() throws Exception {
         this.beforeRemoveNode();
-        N node = this.removeNode();
+        N node = this.doRemoveNode();
         this.afterRemoveNode(node);
         return node;
     }
